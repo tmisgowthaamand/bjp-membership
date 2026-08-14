@@ -85,6 +85,8 @@ export default function CandidateVerificationPage() {
     }
   }, [appId])
 
+  const [sharing, setSharing] = useState(false)
+
   // Download Card PNG
   const handleDownload = async () => {
     if (!cardRef.current) return
@@ -106,6 +108,48 @@ export default function CandidateVerificationPage() {
       alert('Failed to download card. Please try again.')
     } finally {
       setDownloading(false)
+    }
+  }
+
+  // Share Card PNG Image directly on WhatsApp / Native Share
+  const handleShareWhatsApp = async () => {
+    if (!cardRef.current) return
+    setSharing(true)
+    try {
+      const canvas = await html2canvas(cardRef.current, {
+        scale: 3,
+        useCORS: true,
+        allowTaint: true,
+        backgroundColor: '#f76201',
+      })
+      canvas.toBlob(async (blob) => {
+        if (!blob) {
+          setSharing(false)
+          return
+        }
+        const fileName = `BJP_Candidate_Card_${appId || '2026'}.png`
+        const file = new File([blob], fileName, { type: 'image/png' })
+
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          try {
+            await navigator.share({
+              files: [file],
+              title: `BJP Candidate Card - ${candName}`,
+            })
+          } catch (_) { /* User cancelled share */ }
+        } else {
+          // Fallback: download PNG file and prompt user for WhatsApp share
+          const link = document.createElement('a')
+          link.href = URL.createObjectURL(blob)
+          link.download = fileName
+          link.click()
+          window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(`Check out my BJP Tamil Nadu Local Body Elections 2026-27 Candidate Card for ${candName}!`)}`, '_blank')
+        }
+        setSharing(false)
+      }, 'image/png')
+    } catch (err) {
+      console.error('Share error:', err)
+      setSharing(false)
     }
   }
 
@@ -400,31 +444,31 @@ export default function CandidateVerificationPage() {
                 {downloading ? 'Generating High-Res Card Image...' : '📥 Download Candidate Card (PNG)'}
               </button>
 
-              <a
-                href={`https://api.whatsapp.com/send?text=${encodeURIComponent(`Check my official BJP Tamil Nadu Local Body Elections 2026-27 Candidate Application Card for ${candName}:\n\n${window.location.href}`)}`}
-                target="_blank"
-                rel="noreferrer"
+              <button
+                type="button"
+                onClick={handleShareWhatsApp}
+                disabled={sharing || downloading}
                 style={{
                   width: '100%',
                   background: '#25D366',
                   color: '#FFFFFF',
                   border: 'none',
                   borderRadius: 14,
-                  padding: '12px',
-                  fontSize: 14,
-                  fontWeight: 700,
-                  textDecoration: 'none',
-                  textAlign: 'center',
+                  padding: '13px',
+                  fontSize: 14.5,
+                  fontWeight: 800,
+                  cursor: (sharing || downloading) ? 'not-allowed' : 'pointer',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   gap: 8,
                   boxShadow: '0 4px 14px rgba(37, 211, 102, 0.35)',
-                  boxSizing: 'border-box'
+                  boxSizing: 'border-box',
+                  opacity: (sharing || downloading) ? 0.8 : 1
                 }}
               >
-                💬 Share Card on WhatsApp
-              </a>
+                💬 {sharing ? 'Preparing PNG Card to Share...' : 'Share Card PNG Image on WhatsApp'}
+              </button>
             </div>
           </>
         )}
