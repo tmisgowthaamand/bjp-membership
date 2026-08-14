@@ -1522,9 +1522,9 @@ function SubmittedMsg({ result, alreadyApplied, appData }) {
               <span style={{ color: '#64748B', fontWeight: 500 }}>Contest Preference:</span>
               <span style={{ fontWeight: 700, color: '#E65C00' }}>{firstPos}</span>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <span style={{ color: '#64748B', fontWeight: 500 }}>Local Body Ward:</span>
-              <span style={{ fontWeight: 700, color: '#0F172A', fontSize: 10.5 }}>{lbSummary}</span>
+              <span style={{ fontWeight: 700, color: '#0F172A', fontSize: 10.5, textAlign: 'right' }}>{lbSummary}</span>
             </div>
           </div>
 
@@ -1792,9 +1792,9 @@ function SubmittedMsg({ result, alreadyApplied, appData }) {
                   <span style={{ color: '#64748B', fontWeight: 500 }}>Contest Preference:</span>
                   <span style={{ fontWeight: 700, color: '#E65C00' }}>{firstPos}</span>
                 </div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <span style={{ color: '#64748B', fontWeight: 500 }}>Local Body Ward:</span>
-                  <span style={{ fontWeight: 700, color: '#0F172A', fontSize: 11.5 }}>{lbSummary}</span>
+                  <span style={{ fontWeight: 700, color: '#0F172A', fontSize: 10.5, textAlign: 'right' }}>{lbSummary}</span>
                 </div>
               </div>
 

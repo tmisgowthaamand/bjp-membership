@@ -392,9 +392,9 @@ export default function CandidateVerificationPage() {
                   <span style={{ color: '#64748B', fontSize: 11.5, fontWeight: 500 }}>Contest Preference</span>
                   <span style={{ fontWeight: 700, color: '#d85400' }}>{primaryPos}</span>
                 </div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                  <span style={{ color: '#64748B', fontSize: 11.5, fontWeight: 500 }}>Local Body Ward Location</span>
-                  <span style={{ fontWeight: 700, color: '#0F172A', fontSize: 11.5 }}>{lbSummary}</span>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <span style={{ color: '#64748B', fontSize: 11.5, fontWeight: 500 }}>Local Body Ward</span>
+                  <span style={{ fontWeight: 700, color: '#0F172A', fontSize: 10.5, textAlign: 'right' }}>{lbSummary}</span>
                 </div>
               </div>
 
