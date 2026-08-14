@@ -1528,12 +1528,12 @@ function SubmittedMsg({ result, alreadyApplied, appData }) {
             </div>
           </div>
 
-          {/* Candidate Declaration Banner (Tight Spacing & Premium Typography) */}
+          {/* Candidate Declaration Banner (Large Font, Premium Typography & Compact Spacing) */}
           <div style={{
-            margin: '4px 0 3px 0', background: 'rgba(0,0,0,0.22)', border: '1px solid rgba(255,255,255,0.25)',
-            borderRadius: 8, padding: '5px 10px', textAlign: 'center', color: '#FFFFFF',
-            fontSize: 8.5, fontWeight: 700, fontFamily: "'Inter', system-ui, -apple-system, sans-serif",
-            lineHeight: 1.35, letterSpacing: '0.01em', textShadow: '0 1px 2px rgba(0,0,0,0.35)', zIndex: 1
+            margin: '2px 0', background: 'rgba(0,0,0,0.22)', border: '1px solid rgba(255,255,255,0.28)',
+            borderRadius: 10, padding: '7px 12px', textAlign: 'center', color: '#FFFFFF',
+            fontSize: 11, fontWeight: 800, fontFamily: "'Outfit', 'Inter', system-ui, -apple-system, sans-serif",
+            lineHeight: 1.38, letterSpacing: '0.015em', textShadow: '0 1px 3px rgba(0,0,0,0.4)', zIndex: 1
           }}>
             {t('I have applied to the Bharatiya Janata Party to contest the local body elections and have received the necessary certificate.')}
           </div>
@@ -1797,12 +1797,12 @@ function SubmittedMsg({ result, alreadyApplied, appData }) {
                 </div>
               </div>
 
-              {/* Candidate Declaration Banner (Tight Spacing & Premium Typography) */}
+              {/* Candidate Declaration Banner (Large Font, Premium Typography & Compact Spacing) */}
               <div style={{
-                margin: '4px 0 3px 0', background: 'rgba(0,0,0,0.22)', border: '1px solid rgba(255,255,255,0.25)',
-                borderRadius: 8, padding: '5px 10px', textAlign: 'center', color: '#FFFFFF',
-                fontSize: 8.5, fontWeight: 700, fontFamily: "'Inter', system-ui, -apple-system, sans-serif",
-                lineHeight: 1.35, letterSpacing: '0.01em', textShadow: '0 1px 2px rgba(0,0,0,0.35)', zIndex: 1
+                margin: '2px 0', background: 'rgba(0,0,0,0.22)', border: '1px solid rgba(255,255,255,0.28)',
+                borderRadius: 10, padding: '7px 12px', textAlign: 'center', color: '#FFFFFF',
+                fontSize: 11, fontWeight: 800, fontFamily: "'Outfit', 'Inter', system-ui, -apple-system, sans-serif",
+                lineHeight: 1.38, letterSpacing: '0.015em', textShadow: '0 1px 3px rgba(0,0,0,0.4)', zIndex: 1
               }}>
                 {t('I have applied to the Bharatiya Janata Party to contest the local body elections and have received the necessary certificate.')}
               </div>
