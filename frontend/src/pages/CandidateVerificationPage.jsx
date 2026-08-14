@@ -228,7 +228,7 @@ export default function CandidateVerificationPage() {
                 </div>
                 <div>
                   <div style={{ fontSize: 13.5, fontWeight: 900, color: '#FFFFFF', textTransform: 'uppercase', letterSpacing: '0.03em' }}>
-                    OFFICIAL REGISTERED CANDIDATE
+                    VERIFIED CANDIDATE RECORD
                   </div>
                   <div style={{ fontSize: 11, color: '#D1FAE5', fontWeight: 600, marginTop: 2 }}>
                     Verified Record in BJP TN Local Body Election Database
@@ -324,14 +324,6 @@ export default function CandidateVerificationPage() {
                 <div style={{ textAlign: 'center' }}>
                   <div style={{ fontSize: 18, fontWeight: 900, letterSpacing: '-0.01em', textShadow: '0 2px 4px rgba(0,0,0,0.25)' }}>
                     {candName}
-                  </div>
-                  <div style={{
-                    fontSize: 10, background: '#FFFFFF', color: '#00A650',
-                    border: '1px solid #10B981', padding: '3px 10px', borderRadius: 20,
-                    fontWeight: 800, display: 'inline-flex', alignItems: 'center', gap: 4, marginTop: 3,
-                    boxShadow: '0 2px 6px rgba(0,0,0,0.12)'
-                  }}>
-                    ✓ Official Registered Candidate
                   </div>
                 </div>
               </div>

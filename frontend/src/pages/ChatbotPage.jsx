@@ -1500,13 +1500,6 @@ function SubmittedMsg({ result, alreadyApplied, appData }) {
               <div style={{ fontSize: 17, fontWeight: 800, color: '#FFFFFF', textTransform: 'capitalize', textShadow: '0 2px 4px rgba(0,0,0,0.25)' }}>
                 {candName}
               </div>
-              <div style={{
-                fontSize: 9.5, background: '#FFFFFF', color: '#00A650', border: '1px solid #10B981',
-                padding: '2.5px 10px', borderRadius: 20, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.04em', marginTop: 2,
-                display: 'inline-flex', alignItems: 'center', gap: 4, boxShadow: '0 2px 6px rgba(0,0,0,0.12)'
-              }}>
-                <i className="bi bi-patch-check-fill" /> OFFICIAL REGISTERED CANDIDATE
-              </div>
             </div>
           </div>
 
@@ -1697,13 +1690,6 @@ function SubmittedMsg({ result, alreadyApplied, appData }) {
                 <div style={{ textAlign: 'center' }}>
                   <div style={{ fontSize: 18, fontWeight: 800, color: '#FFFFFF', textTransform: 'capitalize', textShadow: '0 2px 4px rgba(0,0,0,0.25)' }}>
                     {candName}
-                  </div>
-                  <div style={{
-                    fontSize: 10.5, background: '#FFFFFF', color: '#00A650', border: '1px solid #10B981',
-                    padding: '3px 10px', borderRadius: 20, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.04em', marginTop: 3,
-                    display: 'inline-flex', alignItems: 'center', gap: 4, boxShadow: '0 2px 6px rgba(0,0,0,0.12)'
-                  }}>
-                    <i className="bi bi-patch-check-fill" /> OFFICIAL REGISTERED CANDIDATE
                   </div>
                 </div>
               </div>
