@@ -1473,18 +1473,17 @@ function SubmittedMsg({ result, alreadyApplied, appData }) {
           {/* Candidate Avatar & Badge Section */}
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3, marginTop: 2, zIndex: 1 }}>
             <div style={{ position: 'relative' }}>
-              <img
-                src={candidateImg}
-                alt="Candidate Profile"
+              <div
                 className="poster-avatar-img"
                 style={{
                   width: 84, height: 84, borderRadius: '50%',
-                  objectFit: 'cover',
-                  objectPosition: 'top center',
+                  backgroundImage: `url("${candidateImg}")`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'top center',
+                  backgroundRepeat: 'no-repeat',
                   border: '4px solid #FFFFFF', boxShadow: '0 6px 18px rgba(0,0,0,0.25)',
-                  background: '#FFFFFF'
+                  backgroundColor: '#FFFFFF'
                 }}
-                onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300' }}
               />
               <div style={{
                 position: 'absolute', bottom: 0, right: 0,
@@ -1664,18 +1663,17 @@ function SubmittedMsg({ result, alreadyApplied, appData }) {
               {/* Candidate Avatar & Badge Section */}
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6, marginTop: 6, zIndex: 1 }}>
                 <div style={{ position: 'relative' }}>
-                  <img
-                    src={candidateImg}
-                    alt="Candidate"
+                  <div
                     className="poster-avatar-img"
                     style={{
                       width: 94, height: 94, borderRadius: '50%',
-                      objectFit: 'cover',
-                      objectPosition: 'top center',
+                      backgroundImage: `url("${candidateImg}")`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'top center',
+                      backgroundRepeat: 'no-repeat',
                       border: '4px solid #FFFFFF', boxShadow: '0 6px 18px rgba(0,0,0,0.25)',
-                      background: '#FFFFFF'
+                      backgroundColor: '#FFFFFF'
                     }}
-                    onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300' }}
                   />
                   <div style={{
                     position: 'absolute', bottom: 0, right: 0,
