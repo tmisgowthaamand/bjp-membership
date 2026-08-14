@@ -1417,6 +1417,8 @@ function SubmittedMsg({ result, alreadyApplied, appData }) {
             {alreadyApplied
               ? t('You have already submitted an application with this mobile number. It is being reviewed by the Organisation.')
               : t('Your application will be reviewed by the Organisation. You will be contacted on your registered mobile number.')}
+          </div>
+        </div>
         {/* Card Header & Language Toggle Bar */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', maxWidth: 320, margin: '0 auto -6px auto' }}>
           <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--color-ash)', display: 'flex', alignItems: 'center', gap: 4 }}>
