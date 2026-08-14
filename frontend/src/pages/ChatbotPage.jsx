@@ -1334,12 +1334,12 @@ function SubmittedMsg({ result, alreadyApplied, appData }) {
         .catch(() => {})
 
       const origin = typeof window !== 'undefined' ? window.location.origin : 'https://bjp-mebership.vercel.app'
-      const payload = `${origin}/verify?app_id=${encodeURIComponent(targetAppId)}`
+      const payload = `${origin}/verify?app_id=${encodeURIComponent(targetAppId)}&lang=${encodeURIComponent(lang)}`
       QRCode.toDataURL(payload, { margin: 1, width: 140, color: { dark: '#0F172A', light: '#FFFFFF' } })
         .then(setQrUrl)
         .catch(() => {})
     }
-  }, [targetAppId])
+  }, [targetAppId, lang])
 
   const handleDownloadPoster = async () => {
     if (!posterRef.current) return

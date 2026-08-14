@@ -6,10 +6,11 @@ import { getApplication } from '../api'
 import { useLang } from '../i18n/LanguageContext'
 
 export default function CandidateVerificationPage() {
-  const { lang, t } = useLang()
+  const { lang, setLang, t } = useLang()
   const [searchParams] = useSearchParams()
   const { id: routeId } = useParams()
   const appId = searchParams.get('app_id') || searchParams.get('id') || routeId || ''
+  const urlLang = searchParams.get('lang')
 
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
@@ -17,6 +18,12 @@ export default function CandidateVerificationPage() {
   const [qrUrl, setQrUrl] = useState('')
   const [downloading, setDownloading] = useState(false)
   const cardRef = useRef(null)
+
+  useEffect(() => {
+    if (urlLang && (urlLang === 'ta' || urlLang === 'en') && setLang) {
+      setLang(urlLang)
+    }
+  }, [urlLang, setLang])
 
   useEffect(() => {
     if (!appId) {
@@ -191,18 +198,46 @@ export default function CandidateVerificationPage() {
             </div>
           </div>
         </div>
-        <Link to="/" style={{
-          fontSize: 12,
-          color: '#f76201',
-          textDecoration: 'none',
-          fontWeight: 700,
-          background: 'rgba(247, 98, 1, 0.12)',
-          padding: '6px 12px',
-          borderRadius: 20,
-          border: '1px solid rgba(247, 98, 1, 0.3)'
-        }}>
-          Apply Now →
-        </Link>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <div className="lang-toggle" role="group" aria-label="Language" style={{ display: 'flex', background: 'rgba(255,255,255,0.08)', borderRadius: 16, padding: 2, border: '1px solid rgba(255,255,255,0.15)' }}>
+            <button
+              type="button"
+              className={`lang-toggle-btn${lang === 'en' ? ' active' : ''}`}
+              onClick={() => setLang && setLang('en')}
+              style={{
+                background: lang === 'en' ? '#f76201' : 'transparent',
+                color: '#FFF', border: 'none', borderRadius: 12, padding: '4px 10px',
+                fontSize: 11, fontWeight: 700, cursor: 'pointer'
+              }}
+            >
+              EN
+            </button>
+            <button
+              type="button"
+              className={`lang-toggle-btn${lang === 'ta' ? ' active' : ''}`}
+              onClick={() => setLang && setLang('ta')}
+              style={{
+                background: lang === 'ta' ? '#f76201' : 'transparent',
+                color: '#FFF', border: 'none', borderRadius: 12, padding: '4px 10px',
+                fontSize: 11, fontWeight: 700, cursor: 'pointer'
+              }}
+            >
+              தமிழ்
+            </button>
+          </div>
+          <Link to="/" style={{
+            fontSize: 12,
+            color: '#f76201',
+            textDecoration: 'none',
+            fontWeight: 700,
+            background: 'rgba(247, 98, 1, 0.12)',
+            padding: '6px 12px',
+            borderRadius: 20,
+            border: '1px solid rgba(247, 98, 1, 0.3)'
+          }}>
+            Apply Now →
+          </Link>
+        </div>
       </header>
 
       {/* Main Content Area */}

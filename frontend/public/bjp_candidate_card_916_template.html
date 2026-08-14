@@ -470,8 +470,9 @@
     const candName = document.getElementById('candName').innerText.trim();
     const epicNo = document.getElementById('epicNo').innerText.trim();
     
-    // Scannable Verification URL (opens official verification payload on phone scan)
-    const verificationUrl = `https://membership.bjp.org/verify?app_id=${encodeURIComponent(appId)}&name=${encodeURIComponent(candName)}&epic=${encodeURIComponent(epicNo)}&status=VERIFIED`;
+    // Scannable Verification URL (opens official verification payload on phone scan with lang param)
+    const origin = window.location.origin;
+    const verificationUrl = `${origin}/verify?app_id=${encodeURIComponent(appId)}&name=${encodeURIComponent(candName)}&epic=${encodeURIComponent(epicNo)}&status=VERIFIED&lang=${encodeURIComponent(cardLang)}`;
 
     const qrContainer = document.getElementById("qrcode");
     qrContainer.innerHTML = ''; // clear previous content
