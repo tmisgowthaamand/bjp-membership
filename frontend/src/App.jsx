@@ -13,20 +13,22 @@ import ReportsPage from './pages/admin/ReportsPage'
 
 export default function App() {
   return (
-    <Routes>
-      <Route path="/" element={<LanguageProvider><ChatbotPage /></LanguageProvider>} />
-      <Route path="/verify" element={<CandidateVerificationPage />} />
-      <Route path="/verify/:id" element={<CandidateVerificationPage />} />
-      <Route path="/r/:ntCode" element={<ReferralPage />} />
-      <Route path="/admin/login" element={<LoginPage />} />
-      <Route path="/admin" element={<AdminLayout />}>
-        <Route index element={<Navigate to="/admin/dashboard" replace />} />
-        <Route path="dashboard" element={<DashboardPage />} />
-        <Route path="applications" element={<ApplicationsPage />} />
-        <Route path="applications/:id" element={<ApplicationDetailPage />} />
-        <Route path="reports" element={<ReportsPage />} />
-      </Route>
-      <Route path="*" element={<NotFoundPage />} />
-    </Routes>
+    <LanguageProvider>
+      <Routes>
+        <Route path="/" element={<ChatbotPage />} />
+        <Route path="/verify" element={<CandidateVerificationPage />} />
+        <Route path="/verify/:id" element={<CandidateVerificationPage />} />
+        <Route path="/r/:ntCode" element={<ReferralPage />} />
+        <Route path="/admin/login" element={<LoginPage />} />
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<Navigate to="/admin/dashboard" replace />} />
+          <Route path="dashboard" element={<DashboardPage />} />
+          <Route path="applications" element={<ApplicationsPage />} />
+          <Route path="applications/:id" element={<ApplicationDetailPage />} />
+          <Route path="reports" element={<ReportsPage />} />
+        </Route>
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    </LanguageProvider>
   )
 }

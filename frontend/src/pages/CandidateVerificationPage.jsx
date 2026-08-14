@@ -7,7 +7,7 @@ import { useLang } from '../i18n/LanguageContext'
 
 export default function CandidateVerificationPage() {
   const { lang, setLang, t } = useLang()
-  const [searchParams] = useSearchParams()
+  const [searchParams, setSearchParams] = useSearchParams()
   const { id: routeId } = useParams()
   const appId = searchParams.get('app_id') || searchParams.get('id') || routeId || ''
   const urlLang = searchParams.get('lang')
@@ -18,6 +18,13 @@ export default function CandidateVerificationPage() {
   const [qrUrl, setQrUrl] = useState('')
   const [downloading, setDownloading] = useState(false)
   const cardRef = useRef(null)
+
+  const handleSwitchLang = (newLang) => {
+    if (setLang) setLang(newLang)
+    const newParams = new URLSearchParams(searchParams)
+    newParams.set('lang', newLang)
+    setSearchParams(newParams, { replace: true })
+  }
 
   useEffect(() => {
     if (urlLang && (urlLang === 'ta' || urlLang === 'en') && setLang) {
@@ -203,7 +210,7 @@ export default function CandidateVerificationPage() {
             <button
               type="button"
               className={`lang-toggle-btn${lang === 'en' ? ' active' : ''}`}
-              onClick={() => setLang && setLang('en')}
+              onClick={() => handleSwitchLang('en')}
               style={{
                 background: lang === 'en' ? '#f76201' : 'transparent',
                 color: '#FFF', border: 'none', borderRadius: 12, padding: '4px 10px',
@@ -215,7 +222,7 @@ export default function CandidateVerificationPage() {
             <button
               type="button"
               className={`lang-toggle-btn${lang === 'ta' ? ' active' : ''}`}
-              onClick={() => setLang && setLang('ta')}
+              onClick={() => handleSwitchLang('ta')}
               style={{
                 background: lang === 'ta' ? '#f76201' : 'transparent',
                 color: '#FFF', border: 'none', borderRadius: 12, padding: '4px 10px',
