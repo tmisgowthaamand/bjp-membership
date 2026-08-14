@@ -1286,6 +1286,7 @@ function SubmittedMsg({ result, alreadyApplied, appData }) {
   const [sentMsg, setSentMsg] = useState(initialSentMsg)
   const [orgMsg, setOrgMsg] = useState('')
   const [sending, setSending] = useState(false)
+  const [error, setError] = useState('')
   const [fetchedApp, setFetchedApp] = useState(null)
   const [showPosterModal, setShowPosterModal] = useState(false)
   const [showQrScanModal, setShowQrScanModal] = useState(false)
