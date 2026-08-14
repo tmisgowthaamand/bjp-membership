@@ -1500,17 +1500,6 @@ function SubmittedMsg({ result, alreadyApplied, appData }) {
                 {candName}
               </div>
             </div>
-
-            {/* Candidate Declaration Banner */}
-            <div style={{
-              margin: '3px 0 2px 0', background: 'rgba(0,0,0,0.18)', borderRadius: 8, padding: '4px 8px',
-              textAlign: 'center', color: '#FFFFFF', fontSize: 8.5, fontWeight: 600, lineHeight: 1.35, zIndex: 1
-            }}>
-              {lang === 'ta'
-                ? 'நான் உள்ளாட்சி தேர்தலில் போட்டியிட பாரதிய ஜனதா கட்சியில் விண்ணப்பித்து அதற்கான சான்றிதழ் பெற்றுள்ளேன்..!'
-                : 'I have applied to the Bharatiya Janata Party to contest the local body elections and have received the necessary certificate.'
-              }
-            </div>
           </div>
 
           {/* Candidate Details Box (Pure White Panel inside Saffron Card) */}
@@ -1537,6 +1526,17 @@ function SubmittedMsg({ result, alreadyApplied, appData }) {
               <span style={{ color: '#64748B', fontWeight: 500 }}>Local Body Ward:</span>
               <span style={{ fontWeight: 700, color: '#0F172A', fontSize: 10.5 }}>{lbSummary}</span>
             </div>
+          </div>
+
+          {/* Candidate Declaration Banner (Above Submitted Timestamp) */}
+          <div style={{
+            margin: '3px 0 2px 0', background: 'rgba(0,0,0,0.18)', borderRadius: 8, padding: '4px 8px',
+            textAlign: 'center', color: '#FFFFFF', fontSize: 8.5, fontWeight: 600, lineHeight: 1.35, zIndex: 1
+          }}>
+            {lang === 'ta'
+              ? 'நான் உள்ளாட்சி தேர்தலில் போட்டியிட பாரதிய ஜனதா கட்சியில் விண்ணப்பித்து அதற்கான சான்றிதழ் பெற்றுள்ளேன்..!'
+              : 'I have applied to the Bharatiya Janata Party to contest the local body elections and have received the necessary certificate.'
+            }
           </div>
 
           {/* QR Code & Verification Stamp Footer (Pure White Panel inside Saffron Card) */}
@@ -1770,17 +1770,6 @@ function SubmittedMsg({ result, alreadyApplied, appData }) {
                     {candName}
                   </div>
                 </div>
-
-                {/* Candidate Declaration Banner */}
-                <div style={{
-                  margin: '3px 0 2px 0', background: 'rgba(0,0,0,0.18)', borderRadius: 8, padding: '4px 8px',
-                  textAlign: 'center', color: '#FFFFFF', fontSize: 8.5, fontWeight: 600, lineHeight: 1.35, zIndex: 1
-                }}>
-                  {lang === 'ta'
-                    ? 'நான் உள்ளாட்சி தேர்தலில் போட்டியிட பாரதிய ஜனதா கட்சியில் விண்ணப்பித்து அதற்கான சான்றிதழ் பெற்றுள்ளேன்..!'
-                    : 'I have applied to the Bharatiya Janata Party to contest the local body elections and have received the necessary certificate.'
-                  }
-                </div>
               </div>
 
               {/* Candidate Details Box (Pure White Panel inside Saffron Card) */}
@@ -1807,6 +1796,17 @@ function SubmittedMsg({ result, alreadyApplied, appData }) {
                   <span style={{ color: '#64748B', fontWeight: 500 }}>Local Body Ward:</span>
                   <span style={{ fontWeight: 700, color: '#0F172A', fontSize: 11.5 }}>{lbSummary}</span>
                 </div>
+              </div>
+
+              {/* Candidate Declaration Banner (Above Submitted Timestamp) */}
+              <div style={{
+                margin: '3px 0 2px 0', background: 'rgba(0,0,0,0.18)', borderRadius: 8, padding: '4px 8px',
+                textAlign: 'center', color: '#FFFFFF', fontSize: 8.5, fontWeight: 600, lineHeight: 1.35, zIndex: 1
+              }}>
+                {lang === 'ta'
+                  ? 'நான் உள்ளாட்சி தேர்தலில் போட்டியிட பாரதிய ஜனதா கட்சியில் விண்ணப்பித்து அதற்கான சான்றிதழ் பெற்றுள்ளேன்..!'
+                  : 'I have applied to the Bharatiya Janata Party to contest the local body elections and have received the necessary certificate.'
+                }
               </div>
 
               {/* QR Code & Verification Stamp Footer (Pure White Panel inside Saffron Card) */}

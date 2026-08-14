@@ -370,14 +370,6 @@ export default function CandidateVerificationPage() {
                     {candName}
                   </div>
                 </div>
-
-                {/* Candidate Declaration Banner */}
-                <div style={{
-                  margin: '3px 0 2px 0', background: 'rgba(0,0,0,0.18)', borderRadius: 8, padding: '4px 8px',
-                  textAlign: 'center', color: '#FFFFFF', fontSize: 8.5, fontWeight: 600, lineHeight: 1.35, zIndex: 1
-                }}>
-                  I have applied to the Bharatiya Janata Party to contest the local body elections and have received the necessary certificate.
-                </div>
               </div>
 
               {/* Details Box (Pure White Panel) */}
@@ -402,6 +394,14 @@ export default function CandidateVerificationPage() {
                   <span style={{ color: '#64748B', fontSize: 11.5, fontWeight: 500 }}>Local Body Ward Location</span>
                   <span style={{ fontWeight: 700, color: '#0F172A', fontSize: 11.5 }}>{lbSummary}</span>
                 </div>
+              </div>
+
+              {/* Candidate Declaration Banner (Above Submitted Timestamp) */}
+              <div style={{
+                margin: '3px 0 2px 0', background: 'rgba(0,0,0,0.18)', borderRadius: 8, padding: '4px 8px',
+                textAlign: 'center', color: '#FFFFFF', fontSize: 8.5, fontWeight: 600, lineHeight: 1.35, zIndex: 1
+              }}>
+                I have applied to the Bharatiya Janata Party to contest the local body elections and have received the necessary certificate.
               </div>
 
               {/* Card Footer Box (Pure White Panel) */}
