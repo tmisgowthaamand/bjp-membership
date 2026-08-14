@@ -42,13 +42,7 @@ export async function postVerifyOtp(req, res) {
           success: true,
           message: verified.message,
           already_applied: true,
-          application: {
-            application_id: existing.application_id,
-            submitted_at: existing.submitted_at,
-            mobile: existing.mobile,
-            organiser_message: existing.organiser_message || null,
-          },
-
+          application: existing,
         })
       }
     }
