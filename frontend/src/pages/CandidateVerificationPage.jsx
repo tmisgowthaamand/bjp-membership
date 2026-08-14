@@ -6,7 +6,7 @@ import { getApplication } from '../api'
 import { useLang } from '../i18n/LanguageContext'
 
 export default function CandidateVerificationPage() {
-  const { lang } = useLang()
+  const { lang, t } = useLang()
   const [searchParams] = useSearchParams()
   const { id: routeId } = useParams()
   const appId = searchParams.get('app_id') || searchParams.get('id') || routeId || ''
@@ -403,10 +403,7 @@ export default function CandidateVerificationPage() {
                 margin: '3px 0 2px 0', background: 'rgba(0,0,0,0.18)', borderRadius: 8, padding: '4px 8px',
                 textAlign: 'center', color: '#FFFFFF', fontSize: 8.5, fontWeight: 600, lineHeight: 1.35, zIndex: 1
               }}>
-                {lang === 'ta'
-                  ? 'நான் உள்ளாட்சி தேர்தலில் போட்டியிட பாரதிய ஜனதா கட்சியில் விண்ணப்பித்து அதற்கான சான்றிதழ் பெற்றுள்ளேன்..!'
-                  : 'I have applied to the Bharatiya Janata Party to contest the local body elections and have received the necessary certificate.'
-                }
+                {t('I have applied to the Bharatiya Janata Party to contest the local body elections and have received the necessary certificate.')}
               </div>
 
               {/* Card Footer Box (Pure White Panel) */}

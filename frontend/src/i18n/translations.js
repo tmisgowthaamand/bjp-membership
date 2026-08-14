@@ -256,6 +256,7 @@ export const translations = {
     'Pitch Video Link / MP4': 'அறிமுக வீடியோ இணைப்பு / MP4',
     'Ward Development Priorities': 'வார்டு வளர்ச்சி முன்னுரிமைகள்',
     'Grievance Plan': 'குறைதீர்ப்பு திட்டம்',
+    'I have applied to the Bharatiya Janata Party to contest the local body elections and have received the necessary certificate.': 'நான் உள்ளாட்சி தேர்தலில் போட்டியிட பாரதிய ஜனதா கட்சியில் விண்ணப்பித்து அதற்கான சான்றிதழ் பெற்றுள்ளேன்..!',
   },
 }
 
