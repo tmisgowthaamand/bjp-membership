@@ -1965,22 +1965,35 @@ export default function ChatbotPage() {
     initializedRef.current = true
 
     const sess = loadSession()
-    const isMediaUploadStep = sess && sess.chatState && [S.PHOTO_UPLOAD, S.VIDEO_UPLOAD, S.DOC_UPLOAD].includes(sess.chatState)
+    const isActiveSession = sess && sess.chatState && ![S.WELCOME, S.SUBMITTED].includes(sess.chatState)
 
-    if (isMediaUploadStep) {
+    if (isActiveSession) {
       setChatState(sess.chatState)
       if (sess.appData) setAppData(sess.appData)
       if (sess.mobile) mobileRef.current = sess.mobile
 
-      // Reconstruct messages so active media upload step (photo/video/doc upload) renders cleanly
+      // Reconstruct messages for active step so chatbot application stays active and synchronized
       const restoredMsgs = [{ id: 'wb-1', from: 'bot', type: 'welcome_banner', ts: new Date() }]
       const stepTypeMap = {
+        [S.AWAIT_MEMBERSHIP]: 'membership_card',
         [S.PHOTO_UPLOAD]: 'photo_upload',
+        [S.LOCAL_BODY]: 'local_body',
+        [S.POSITION]: 'position',
+        [S.SOCIAL]: 'social',
         [S.VIDEO_UPLOAD]: 'video_upload',
+        [S.WORK]: 'work',
+        [S.LOCAL_AREA]: 'local_area',
+        [S.SHORT_TEXTS]: 'short_texts',
         [S.DOC_UPLOAD]: 'doc_upload',
+        [S.REVIEW]: 'review',
       }
       if (stepTypeMap[sess.chatState]) {
         restoredMsgs.push({ id: 'st-1', from: 'bot', type: stepTypeMap[sess.chatState], ts: new Date() })
+      } else if (sess.chatState === S.AWAIT_MOBILE) {
+        restoredMsgs.push({ id: 'm-1', from: 'bot', type: 'text', text: t('Welcome! Let us begin. Please enter your 10-digit mobile number.'), ts: new Date() })
+      } else if (sess.chatState === S.AWAIT_OTP) {
+        const mob = sess.mobile ? maskMobile(sess.mobile) : ''
+        restoredMsgs.push({ id: 'm-1', from: 'bot', type: 'text', text: t('An OTP has been sent to {mobile}. Please enter it below.', { mobile: mob }), ts: new Date() })
       }
       setMessages(restoredMsgs)
     } else {
@@ -1992,12 +2005,11 @@ export default function ChatbotPage() {
       addMsg('bot', 'welcome_banner', {})
       setChatState(S.WELCOME)
     }
-  }, [addMsg])
+  }, [addMsg, t])
 
-  // Persist session active state strictly for media upload steps (photo/video/doc)
-  // so native mobile camera & file pickers return seamlessly without losing step card
+  // Persist session active state for active chatbot users (refreshed sliding 30-min window)
   useEffect(() => {
-    if ([S.PHOTO_UPLOAD, S.VIDEO_UPLOAD, S.DOC_UPLOAD].includes(chatState)) {
+    if (chatState !== S.WELCOME && chatState !== S.SUBMITTED) {
       saveSession({
         chatState,
         appData,
