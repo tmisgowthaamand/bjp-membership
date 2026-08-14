@@ -28,8 +28,9 @@ export default function CandidateVerificationPage() {
 
     getApplication(appId)
       .then((res) => {
-        if (res.data?.success && res.data?.application) {
-          setAppData(res.data.application)
+        const app = res?.application || res?.data?.application
+        if (app) {
+          setAppData(app)
         } else {
           setError('Candidate application record not found.')
         }

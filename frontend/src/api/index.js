@@ -4,7 +4,7 @@ const api = axios.create({
   // Support VITE_API_URL env var for pointing at staging/production API.
   // Falls back to same-origin (empty string) when not set — works when
   // frontend and backend are co-served, or via the Vite dev proxy.
-  baseURL: import.meta.env.VITE_API_URL || '',
+  baseURL: import.meta.env.VITE_API_URL || 'https://bjp-membership-backend.onrender.com',
   withCredentials: true,
   timeout: 30000,
 })
