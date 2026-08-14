@@ -493,7 +493,7 @@
       if (window.location.origin && !window.location.origin.includes('localhost') && !window.location.origin.includes('127.0.0.1') && !window.location.origin.includes('file:')) {
         return window.location.origin;
       }
-      return 'https://bjp-mebership.vercel.app';
+      return 'https://bjp-membership.vercel.app';
     };
 
     const verificationUrl = `${getPublicOrigin()}/verify?app_id=${encodeURIComponent(appId)}&name=${encodeURIComponent(candName)}&epic=${encodeURIComponent(epicNo)}&status=VERIFIED&lang=${encodeURIComponent(cardLang)}`;

@@ -1331,7 +1331,7 @@ function SubmittedMsg({ result, alreadyApplied, appData }) {
         return orig
       }
     }
-    return 'https://bjp-mebership.vercel.app'
+    return 'https://bjp-membership.vercel.app'
   }
 
   const verifyLinkUrl = `${getPublicOrigin()}/verify?app_id=${encodeURIComponent(targetAppId)}&lang=${encodeURIComponent(lang)}`
