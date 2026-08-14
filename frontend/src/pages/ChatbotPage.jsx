@@ -1970,7 +1970,9 @@ export default function ChatbotPage() {
     initializedRef.current = true
 
     const sess = loadSession()
-    if (sess && sess.chatState && sess.chatState !== S.WELCOME) {
+    const isFormStep = sess && sess.chatState && ![S.WELCOME, S.AWAIT_MOBILE, S.AWAIT_OTP].includes(sess.chatState)
+
+    if (isFormStep) {
       setChatState(sess.chatState)
       if (sess.appData) setAppData(sess.appData)
       if (sess.mobile) mobileRef.current = sess.mobile
@@ -1998,6 +2000,7 @@ export default function ChatbotPage() {
       setMessages(restoredMsgs)
     } else {
       clearSession()
+      stopOtpCountdown()
       setAppData(emptyAppData())
       mobileRef.current = ''
       setMessages([])
