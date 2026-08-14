@@ -1898,7 +1898,7 @@ export default function ChatbotPage() {
     initializedRef.current = true
 
     const sess = loadSession()
-    const isFormStep = sess && sess.chatState && ![S.WELCOME, S.AWAIT_MOBILE, S.AWAIT_OTP].includes(sess.chatState)
+    const isFormStep = sess && sess.chatState && ![S.WELCOME, S.AWAIT_MOBILE, S.AWAIT_OTP, S.SUBMITTED].includes(sess.chatState)
 
     if (isFormStep) {
       setChatState(sess.chatState)
@@ -1922,8 +1922,6 @@ export default function ChatbotPage() {
       }
       if (stepTypeMap[sess.chatState]) {
         restoredMsgs.push({ id: 'st-1', from: 'bot', type: stepTypeMap[sess.chatState], ts: new Date() })
-      } else if (sess.chatState === S.SUBMITTED) {
-        restoredMsgs.push({ id: 'sub-1', from: 'bot', type: 'submitted', result: sess.appData, ts: new Date() })
       }
       setMessages(restoredMsgs)
     } else {
@@ -1939,12 +1937,14 @@ export default function ChatbotPage() {
 
   // Persist session active state so mobile file/camera picker returns seamlessly
   useEffect(() => {
-    if (chatState !== S.WELCOME) {
+    if (chatState !== S.WELCOME && chatState !== S.SUBMITTED) {
       saveSession({
         chatState,
         appData,
         mobile: mobileRef.current,
       })
+    } else if (chatState === S.SUBMITTED) {
+      clearSession()
     }
   }, [chatState, appData])
 
