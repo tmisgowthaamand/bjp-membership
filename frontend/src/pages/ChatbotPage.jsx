@@ -2181,7 +2181,7 @@ export default function ChatbotPage() {
     const rawVal = customVal !== undefined ? customVal : inputValue
     const membershipId = skipped ? '' : String(rawVal || '').trim()
     patchData({ membershipId })
-    addMsg('user', 'text', { text: membershipId ? membershipId : t('Skipped (Not a member yet)') })
+    addMsg('user', 'text', { text: membershipId ? membershipId : t('Skipped') })
     setInputValue('')
     await botSay(t('Thank you. Now please enter your EPIC Number (Voter ID).'), 350)
     await botSay(t('Format: letters followed by digits, e.g. ABC1234567'), 200)
