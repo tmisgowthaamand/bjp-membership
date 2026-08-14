@@ -335,8 +335,12 @@ function PhotoUploadMsg({ active, initial, onSubmit, disabled }) {
       return
     }
     setPhotoFile(file)
-    setPreview(URL.createObjectURL(file))
     setError('')
+    const reader = new FileReader()
+    reader.onloadend = () => {
+      setPreview(reader.result)
+    }
+    reader.readAsDataURL(file)
   }
 
   const handleContinue = () => {
