@@ -1965,27 +1965,19 @@ export default function ChatbotPage() {
     initializedRef.current = true
 
     const sess = loadSession()
-    const isFormStep = sess && sess.chatState && ![S.WELCOME, S.AWAIT_MOBILE, S.AWAIT_OTP, S.SUBMITTED].includes(sess.chatState)
+    const isMediaUploadStep = sess && sess.chatState && [S.PHOTO_UPLOAD, S.VIDEO_UPLOAD, S.DOC_UPLOAD].includes(sess.chatState)
 
-    if (isFormStep) {
+    if (isMediaUploadStep) {
       setChatState(sess.chatState)
       if (sess.appData) setAppData(sess.appData)
       if (sess.mobile) mobileRef.current = sess.mobile
 
-      // Reconstruct messages so active step (photo/video/doc upload) renders cleanly
+      // Reconstruct messages so active media upload step (photo/video/doc upload) renders cleanly
       const restoredMsgs = [{ id: 'wb-1', from: 'bot', type: 'welcome_banner', ts: new Date() }]
       const stepTypeMap = {
-        [S.AWAIT_MEMBERSHIP]: 'membership_card',
         [S.PHOTO_UPLOAD]: 'photo_upload',
-        [S.LOCAL_BODY]: 'local_body',
-        [S.POSITION]: 'position',
-        [S.SOCIAL]: 'social',
         [S.VIDEO_UPLOAD]: 'video_upload',
-        [S.WORK]: 'work',
-        [S.LOCAL_AREA]: 'local_area',
-        [S.SHORT_TEXTS]: 'short_texts',
         [S.DOC_UPLOAD]: 'doc_upload',
-        [S.REVIEW]: 'review',
       }
       if (stepTypeMap[sess.chatState]) {
         restoredMsgs.push({ id: 'st-1', from: 'bot', type: stepTypeMap[sess.chatState], ts: new Date() })
@@ -2002,15 +1994,16 @@ export default function ChatbotPage() {
     }
   }, [addMsg])
 
-  // Persist session active state so mobile file/camera picker returns seamlessly
+  // Persist session active state strictly for media upload steps (photo/video/doc)
+  // so native mobile camera & file pickers return seamlessly without losing step card
   useEffect(() => {
-    if (chatState !== S.WELCOME && chatState !== S.SUBMITTED) {
+    if ([S.PHOTO_UPLOAD, S.VIDEO_UPLOAD, S.DOC_UPLOAD].includes(chatState)) {
       saveSession({
         chatState,
         appData,
         mobile: mobileRef.current,
       })
-    } else if (chatState === S.SUBMITTED) {
+    } else {
       clearSession()
     }
   }, [chatState, appData])
