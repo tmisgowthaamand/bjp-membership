@@ -1417,6 +1417,34 @@ function SubmittedMsg({ result, alreadyApplied, appData }) {
             {alreadyApplied
               ? t('You have already submitted an application with this mobile number. It is being reviewed by the Organisation.')
               : t('Your application will be reviewed by the Organisation. You will be contacted on your registered mobile number.')}
+        {/* Card Header & Language Toggle Bar */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', maxWidth: 320, margin: '0 auto -6px auto' }}>
+          <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--color-ash)', display: 'flex', alignItems: 'center', gap: 4 }}>
+            <i className="bi bi-translate" /> Card Language / மொழி:
+          </span>
+          <div style={{ display: 'flex', background: 'rgba(255,255,255,0.08)', borderRadius: 16, padding: 2, border: '1px solid rgba(255,255,255,0.15)' }}>
+            <button
+              type="button"
+              onClick={() => setLang('en')}
+              style={{
+                background: lang === 'en' ? '#f76201' : 'transparent',
+                color: '#FFF', border: 'none', borderRadius: 12, padding: '3px 10px',
+                fontSize: 11, fontWeight: 800, cursor: 'pointer', transition: 'all 0.2s'
+              }}
+            >
+              EN
+            </button>
+            <button
+              type="button"
+              onClick={() => setLang('ta')}
+              style={{
+                background: lang === 'ta' ? '#f76201' : 'transparent',
+                color: '#FFF', border: 'none', borderRadius: 12, padding: '3px 10px',
+                fontSize: 11, fontWeight: 800, cursor: 'pointer', transition: 'all 0.2s'
+              }}
+            >
+              தமிழ்
+            </button>
           </div>
         </div>
 
@@ -1675,14 +1703,41 @@ function SubmittedMsg({ result, alreadyApplied, appData }) {
         }}>
           <div style={{ maxWidth: 380, width: '100%', display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'center' }}>
             
-            {/* Modal Top Actions */}
-            <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', color: '#FFF' }}>
-              <span style={{ fontWeight: 700, fontSize: 14, color: '#f76201' }}>
-                <i className="bi bi-phone-fill me-1" /> 9:16 Candidate Application Card
+            {/* Modal Top Actions with Language Toggle */}
+            <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', color: '#FFF', gap: 8 }}>
+              <span style={{ fontWeight: 700, fontSize: 13, color: '#f76201', display: 'flex', alignItems: 'center', gap: 4 }}>
+                <i className="bi bi-phone-fill me-1" /> 9:16 Card
               </span>
+
+              {/* Language Switcher (EN / தமிழ்) */}
+              <div style={{ display: 'flex', background: 'rgba(255,255,255,0.12)', borderRadius: 18, padding: 3, border: '1px solid rgba(255,255,255,0.25)' }}>
+                <button
+                  type="button"
+                  onClick={() => setLang('en')}
+                  style={{
+                    background: lang === 'en' ? '#f76201' : 'transparent',
+                    color: '#FFF', border: 'none', borderRadius: 14, padding: '3px 10px',
+                    fontSize: 11, fontWeight: 800, cursor: 'pointer', transition: 'all 0.2s'
+                  }}
+                >
+                  EN
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setLang('ta')}
+                  style={{
+                    background: lang === 'ta' ? '#f76201' : 'transparent',
+                    color: '#FFF', border: 'none', borderRadius: 14, padding: '3px 10px',
+                    fontSize: 11, fontWeight: 800, cursor: 'pointer', transition: 'all 0.2s'
+                  }}
+                >
+                  தமிழ்
+                </button>
+              </div>
+
               <button
                 onClick={() => setShowPosterModal(false)}
-                style={{ background: 'rgba(255,255,255,0.2)', border: 'none', color: '#FFF', borderRadius: '50%', width: 32, height: 32, cursor: 'pointer', fontWeight: 700 }}
+                style={{ background: 'rgba(255,255,255,0.2)', border: 'none', color: '#FFF', borderRadius: '50%', width: 32, height: 32, cursor: 'pointer', fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
               >
                 ✕
               </button>

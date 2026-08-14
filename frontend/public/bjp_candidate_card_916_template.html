@@ -446,7 +446,12 @@
     </div>
 
     <!-- Actions -->
-    <div class="actions">
+    <div class="actions" style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
+      <div style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.08); padding: 4px 10px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.15);">
+        <span style="font-size: 11px; font-weight: 600; color: #CBD5E1;">Card Language / மொழி:</span>
+        <button type="button" onclick="switchLang('en')" id="btnLangEn" style="background: transparent; color: #FFF; border: none; border-radius: 12px; padding: 4px 12px; font-weight: 700; cursor: pointer; font-size: 11px;">EN</button>
+        <button type="button" onclick="switchLang('ta')" id="btnLangTa" style="background: transparent; color: #FFF; border: none; border-radius: 12px; padding: 4px 12px; font-weight: 700; cursor: pointer; font-size: 11px;">தமிழ்</button>
+      </div>
       <button class="btn-download" onclick="downloadPNG()">
         <i class="bi bi-download"></i> Download 9:16 Card Image (PNG)
       </button>
@@ -458,11 +463,24 @@
     // Support language query parameter (?lang=ta)
     const urlParams = new URLSearchParams(window.location.search);
     const cardLang = urlParams.get('lang') || 'en';
+    
+    // Highlight active button
     if (cardLang === 'ta') {
+      const btnTa = document.getElementById('btnLangTa');
+      if (btnTa) btnTa.style.background = '#f76201';
       const declEl = document.getElementById('candDeclaration');
       if (declEl) {
         declEl.innerText = 'நான் உள்ளாட்சி தேர்தலில் போட்டியிட பாரதிய ஜனதா கட்சியில் விண்ணப்பித்து அதற்கான சான்றிதழ் பெற்றுள்ளேன்..!';
       }
+    } else {
+      const btnEn = document.getElementById('btnLangEn');
+      if (btnEn) btnEn.style.background = '#f76201';
+    }
+
+    function switchLang(newLang) {
+      const params = new URLSearchParams(window.location.search);
+      params.set('lang', newLang);
+      window.location.search = params.toString();
     }
 
     // Initialize Functional Verification QR Code
