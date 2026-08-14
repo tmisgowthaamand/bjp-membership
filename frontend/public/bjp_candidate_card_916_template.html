@@ -471,13 +471,19 @@
     const epicNo = document.getElementById('epicNo').innerText.trim();
     
     // Scannable Verification URL (opens official verification payload on phone scan with lang param)
-    const origin = window.location.origin;
-    const verificationUrl = `${origin}/verify?app_id=${encodeURIComponent(appId)}&name=${encodeURIComponent(candName)}&epic=${encodeURIComponent(epicNo)}&status=VERIFIED&lang=${encodeURIComponent(cardLang)}`;
+    const getPublicOrigin = () => {
+      if (window.location.origin && !window.location.origin.includes('localhost') && !window.location.origin.includes('127.0.0.1') && !window.location.origin.includes('file:')) {
+        return window.location.origin;
+      }
+      return 'https://bjp-mebership.vercel.app';
+    };
+
+    const verificationUrl = `${getPublicOrigin()}/verify?app_id=${encodeURIComponent(appId)}&name=${encodeURIComponent(candName)}&epic=${encodeURIComponent(epicNo)}&status=VERIFIED&lang=${encodeURIComponent(cardLang)}`;
 
     const qrContainer = document.getElementById("qrcode");
-    qrContainer.innerHTML = ''; // clear previous content
+    qrContainer.innerHTML = `<a href="${verificationUrl}" target="_blank" rel="noopener noreferrer" style="text-decoration:none;"><div id="qrInner" style="cursor:pointer;"></div></a>`;
 
-    new QRCode(qrContainer, {
+    new QRCode(document.getElementById("qrInner"), {
       text: verificationUrl,
       width: 46,
       height: 46,

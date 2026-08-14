@@ -457,9 +457,11 @@ export default function CandidateVerificationPage() {
                   </span>
                 </div>
                 {qrUrl && (
-                  <div style={{ background: '#FFF', padding: 2, borderRadius: 6, border: '1px solid #E2E8F0', display: 'flex' }}>
-                    <img src={qrUrl} alt="Verification QR Code" style={{ width: 46, height: 46 }} />
-                  </div>
+                  <a href={window.location.href} target="_blank" rel="noopener noreferrer" title="Click to open verification link">
+                    <div style={{ background: '#FFF', padding: 2, borderRadius: 6, border: '1px solid #E2E8F0', display: 'flex', cursor: 'pointer' }}>
+                      <img src={qrUrl} alt="Verification QR Code" style={{ width: 46, height: 46 }} />
+                    </div>
+                  </a>
                 )}
               </div>
             </div>

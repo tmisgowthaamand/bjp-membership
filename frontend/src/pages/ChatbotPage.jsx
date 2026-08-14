@@ -1324,6 +1324,18 @@ function SubmittedMsg({ result, alreadyApplied, appData }) {
 
   const targetAppId = activeApp.application_id || result?.application_id || appData?.applicationId || ''
 
+  const getPublicOrigin = () => {
+    if (typeof window !== 'undefined' && window.location.origin) {
+      const orig = window.location.origin
+      if (!orig.includes('localhost') && !orig.includes('127.0.0.1') && !orig.includes('file:')) {
+        return orig
+      }
+    }
+    return 'https://bjp-mebership.vercel.app'
+  }
+
+  const verifyLinkUrl = `${getPublicOrigin()}/verify?app_id=${encodeURIComponent(targetAppId)}&lang=${encodeURIComponent(lang)}`
+
   useEffect(() => {
     if (targetAppId) {
       chat.getApplication(targetAppId)
@@ -1333,13 +1345,11 @@ function SubmittedMsg({ result, alreadyApplied, appData }) {
         })
         .catch(() => {})
 
-      const origin = typeof window !== 'undefined' ? window.location.origin : 'https://bjp-mebership.vercel.app'
-      const payload = `${origin}/verify?app_id=${encodeURIComponent(targetAppId)}&lang=${encodeURIComponent(lang)}`
-      QRCode.toDataURL(payload, { margin: 1, width: 140, color: { dark: '#0F172A', light: '#FFFFFF' } })
+      QRCode.toDataURL(verifyLinkUrl, { margin: 1, width: 140, color: { dark: '#0F172A', light: '#FFFFFF' } })
         .then(setQrUrl)
         .catch(() => {})
     }
-  }, [targetAppId, lang])
+  }, [targetAppId, lang, verifyLinkUrl])
 
   const handleDownloadPoster = async () => {
     if (!posterRef.current) return
@@ -1554,14 +1564,14 @@ function SubmittedMsg({ result, alreadyApplied, appData }) {
               </div>
             </div>
             {qrUrl && (
-              <img
-                src={qrUrl}
-                alt="QR Verification"
-                className="poster-qr-img"
-                title="Click to test QR Code scan result"
-                onClick={() => setShowQrScanModal(true)}
-                style={{ width: 44, height: 44, borderRadius: 6, border: '1px solid #CBD5E1', background: '#FFF', cursor: 'pointer' }}
-              />
+              <a href={verifyLinkUrl} target="_blank" rel="noopener noreferrer" title="Click to view candidate verification page">
+                <img
+                  src={qrUrl}
+                  alt="QR Verification"
+                  className="poster-qr-img"
+                  style={{ width: 44, height: 44, borderRadius: 6, border: '1px solid #CBD5E1', background: '#FFF', display: 'block', cursor: 'pointer' }}
+                />
+              </a>
             )}
           </div>
         </div>
@@ -1823,7 +1833,9 @@ function SubmittedMsg({ result, alreadyApplied, appData }) {
                   </div>
                 </div>
                 {qrUrl && (
-                  <img src={qrUrl} alt="QR Verification" className="poster-qr-img" style={{ width: 48, height: 48, borderRadius: 6, border: '1px solid #CBD5E1', background: '#FFF' }} />
+                  <a href={verifyLinkUrl} target="_blank" rel="noopener noreferrer" title="Click to view candidate verification page">
+                    <img src={qrUrl} alt="QR Verification" className="poster-qr-img" style={{ width: 48, height: 48, borderRadius: 6, border: '1px solid #CBD5E1', background: '#FFF', display: 'block', cursor: 'pointer' }} />
+                  </a>
                 )}
               </div>
             </div>
