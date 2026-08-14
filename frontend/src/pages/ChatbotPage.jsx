@@ -1988,8 +1988,28 @@ export default function ChatbotPage() {
       setChatState(sess.chatState)
       if (sess.appData) setAppData(sess.appData)
       if (sess.mobile) mobileRef.current = sess.mobile
-      addMsg('bot', 'welcome_banner', {})
-      addMsg('bot', 'text', { text: '👋 Resuming your application session...' })
+
+      // Reconstruct messages so active step (photo/video/doc upload) renders cleanly
+      const restoredMsgs = [{ id: 'wb-1', from: 'bot', type: 'welcome_banner', ts: new Date() }]
+      const stepTypeMap = {
+        [S.AWAIT_MEMBERSHIP]: 'membership_card',
+        [S.PHOTO_UPLOAD]: 'photo_upload',
+        [S.LOCAL_BODY]: 'local_body',
+        [S.POSITION]: 'position',
+        [S.SOCIAL]: 'social',
+        [S.VIDEO_UPLOAD]: 'video_upload',
+        [S.WORK]: 'work',
+        [S.LOCAL_AREA]: 'local_area',
+        [S.SHORT_TEXTS]: 'short_texts',
+        [S.DOC_UPLOAD]: 'doc_upload',
+        [S.REVIEW]: 'review',
+      }
+      if (stepTypeMap[sess.chatState]) {
+        restoredMsgs.push({ id: 'st-1', from: 'bot', type: stepTypeMap[sess.chatState], ts: new Date() })
+      } else if (sess.chatState === S.SUBMITTED) {
+        restoredMsgs.push({ id: 'sub-1', from: 'bot', type: 'submitted', result: sess.appData, ts: new Date() })
+      }
+      setMessages(restoredMsgs)
     } else {
       clearSession()
       setAppData(emptyAppData())
