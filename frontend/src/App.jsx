@@ -1,6 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { LanguageProvider } from './i18n/LanguageContext'
 import ChatbotPage from './pages/ChatbotPage'
+import CandidateVerificationPage from './pages/CandidateVerificationPage'
 import NotFoundPage from './pages/NotFoundPage'
 import ReferralPage from './pages/ReferralPage'
 import AdminLayout from './pages/admin/AdminLayout'
@@ -14,6 +15,8 @@ export default function App() {
   return (
     <Routes>
       <Route path="/" element={<LanguageProvider><ChatbotPage /></LanguageProvider>} />
+      <Route path="/verify" element={<CandidateVerificationPage />} />
+      <Route path="/verify/:id" element={<CandidateVerificationPage />} />
       <Route path="/r/:ntCode" element={<ReferralPage />} />
       <Route path="/admin/login" element={<LoginPage />} />
       <Route path="/admin" element={<AdminLayout />}>

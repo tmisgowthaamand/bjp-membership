@@ -1318,12 +1318,13 @@ function SubmittedMsg({ result, alreadyApplied, appData }) {
 
   useEffect(() => {
     if (result?.application_id) {
-      const payload = `https://membership.bjp.org/verify?app_id=${encodeURIComponent(result.application_id)}&name=${encodeURIComponent(candName)}&status=VERIFIED`
+      const origin = typeof window !== 'undefined' ? window.location.origin : 'https://bjp-mebership.vercel.app'
+      const payload = `${origin}/verify?app_id=${encodeURIComponent(result.application_id)}`
       QRCode.toDataURL(payload, { margin: 1, width: 140, color: { dark: '#0F172A', light: '#FFFFFF' } })
         .then(setQrUrl)
         .catch(() => {})
     }
-  }, [result?.application_id, candName])
+  }, [result?.application_id])
 
   const handleDownloadPoster = async () => {
     if (!posterRef.current) return

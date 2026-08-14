@@ -75,6 +75,9 @@ export const chat = {
     }),
 }
 
+export const getApplication = (applicationId) =>
+  api.get(`/api/application/${applicationId}`)
+
 
 
 // ── Admin console API (username/password + bearer token) ──────────
