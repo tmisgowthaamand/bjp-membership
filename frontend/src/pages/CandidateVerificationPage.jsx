@@ -398,10 +398,12 @@ export default function CandidateVerificationPage() {
                 </div>
               </div>
 
-              {/* Candidate Declaration Banner (Above Submitted Timestamp) */}
+              {/* Candidate Declaration Banner (Balanced Spacing & Premium Typography) */}
               <div style={{
-                margin: '3px 0 2px 0', background: 'rgba(0,0,0,0.18)', borderRadius: 8, padding: '4px 8px',
-                textAlign: 'center', color: '#FFFFFF', fontSize: 8.5, fontWeight: 600, lineHeight: 1.35, zIndex: 1
+                margin: '6px 0', background: 'rgba(0,0,0,0.22)', border: '1px solid rgba(255,255,255,0.25)',
+                borderRadius: 10, padding: '7px 12px', textAlign: 'center', color: '#FFFFFF',
+                fontSize: 9.5, fontWeight: 700, fontFamily: "'Inter', system-ui, -apple-system, sans-serif",
+                lineHeight: 1.4, letterSpacing: '0.01em', textShadow: '0 1px 2px rgba(0,0,0,0.35)', zIndex: 1
               }}>
                 {t('I have applied to the Bharatiya Janata Party to contest the local body elections and have received the necessary certificate.')}
               </div>
