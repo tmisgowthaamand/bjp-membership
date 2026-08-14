@@ -394,16 +394,16 @@ export default function CandidateVerificationPage() {
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <span style={{ color: '#64748B', fontSize: 11.5, fontWeight: 500 }}>Local Body Ward</span>
-                  <span style={{ fontWeight: 700, color: '#0F172A', fontSize: 10.5, textAlign: 'right' }}>{lbSummary}</span>
+                  <span style={{ fontWeight: 700, color: '#0F172A', fontSize: 9, textAlign: 'right', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: 210 }}>{lbSummary}</span>
                 </div>
               </div>
 
-              {/* Candidate Declaration Banner (Balanced Spacing & Premium Typography) */}
+              {/* Candidate Declaration Banner (Tight Spacing & Premium Typography) */}
               <div style={{
-                margin: '6px 0', background: 'rgba(0,0,0,0.22)', border: '1px solid rgba(255,255,255,0.25)',
-                borderRadius: 10, padding: '7px 12px', textAlign: 'center', color: '#FFFFFF',
-                fontSize: 9.5, fontWeight: 700, fontFamily: "'Inter', system-ui, -apple-system, sans-serif",
-                lineHeight: 1.4, letterSpacing: '0.01em', textShadow: '0 1px 2px rgba(0,0,0,0.35)', zIndex: 1
+                margin: '4px 0 3px 0', background: 'rgba(0,0,0,0.22)', border: '1px solid rgba(255,255,255,0.25)',
+                borderRadius: 8, padding: '5px 10px', textAlign: 'center', color: '#FFFFFF',
+                fontSize: 8.5, fontWeight: 700, fontFamily: "'Inter', system-ui, -apple-system, sans-serif",
+                lineHeight: 1.35, letterSpacing: '0.01em', textShadow: '0 1px 2px rgba(0,0,0,0.35)', zIndex: 1
               }}>
                 {t('I have applied to the Bharatiya Janata Party to contest the local body elections and have received the necessary certificate.')}
               </div>
