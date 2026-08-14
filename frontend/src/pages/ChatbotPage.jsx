@@ -1982,14 +1982,33 @@ export default function ChatbotPage() {
     if (initializedRef.current) return
     initializedRef.current = true
 
-    // Refresh resets to the initial welcome step
-    clearSession()
-    setAppData(emptyAppData())
-    mobileRef.current = ''
-    setMessages([])
-    addMsg('bot', 'welcome_banner', {})
-    setChatState(S.WELCOME)
+    const sess = loadSession()
+    if (sess && sess.chatState && sess.chatState !== S.WELCOME) {
+      setChatState(sess.chatState)
+      if (sess.appData) setAppData(sess.appData)
+      if (sess.mobile) mobileRef.current = sess.mobile
+      addMsg('bot', 'welcome_banner', {})
+      addMsg('bot', 'text', { text: '👋 Resuming your application session...' })
+    } else {
+      clearSession()
+      setAppData(emptyAppData())
+      mobileRef.current = ''
+      setMessages([])
+      addMsg('bot', 'welcome_banner', {})
+      setChatState(S.WELCOME)
+    }
   }, [addMsg])
+
+  // Persist session active state so mobile file/camera picker returns seamlessly
+  useEffect(() => {
+    if (chatState !== S.WELCOME) {
+      saveSession({
+        chatState,
+        appData,
+        mobile: mobileRef.current,
+      })
+    }
+  }, [chatState, appData])
 
 
   // ── Auto-logout after 30 minutes of inactivity (sliding) ──
@@ -2027,7 +2046,8 @@ export default function ChatbotPage() {
     }
     const onVisible = () => {
       if (document.visibilityState !== 'visible') return
-      if (!loadSession()) { doAutoLogout(); return } // expired while tab was hidden
+      const sess = loadSession()
+      if (!sess && chatState !== S.WELCOME) { doAutoLogout(); return } // expired while tab was hidden
       touchSession()
       arm()
     }
