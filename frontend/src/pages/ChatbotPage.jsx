@@ -1500,6 +1500,17 @@ function SubmittedMsg({ result, alreadyApplied, appData }) {
                 {candName}
               </div>
             </div>
+
+            {/* Candidate Declaration Banner */}
+            <div style={{
+              margin: '3px 0 2px 0', background: 'rgba(0,0,0,0.18)', borderRadius: 8, padding: '4px 8px',
+              textAlign: 'center', color: '#FFFFFF', fontSize: 8.5, fontWeight: 600, lineHeight: 1.35, zIndex: 1
+            }}>
+              {lang === 'ta'
+                ? 'நான் உள்ளாட்சி தேர்தலில் போட்டியிட பாரதிய ஜனதா கட்சியில் விண்ணப்பித்து அதற்கான சான்றிதழ் பெற்றுள்ளேன்..!'
+                : 'I have applied to the Bharatiya Janata Party to contest the local body elections and have received the necessary certificate.'
+              }
+            </div>
           </div>
 
           {/* Candidate Details Box (Pure White Panel inside Saffron Card) */}
@@ -1535,11 +1546,11 @@ function SubmittedMsg({ result, alreadyApplied, appData }) {
             boxShadow: '0 4px 14px rgba(0,0,0,0.15)', zIndex: 1, color: '#0F172A'
           }}>
             <div>
-              <div style={{ fontSize: 8.5, color: '#64748B', fontWeight: 500 }}>Submitted Timestamp</div>
-              <div style={{ fontSize: 10, fontWeight: 700, color: '#0F172A', marginTop: 1 }}>
+              <div style={{ fontSize: 8, color: '#64748B', fontWeight: 500 }}>Submitted Timestamp</div>
+              <div style={{ fontSize: 9.5, fontWeight: 700, color: '#0F172A', marginTop: 1 }}>
                 {fmtDateTime(result.submitted_at)}
               </div>
-              <div style={{ fontSize: 8.5, color: '#FF6600', marginTop: 1, fontWeight: 800, display: 'flex', alignItems: 'center', gap: 3 }}>
+              <div style={{ fontSize: 8, color: '#FF6600', marginTop: 1, fontWeight: 800, display: 'flex', alignItems: 'center', gap: 3 }}>
                 <i className="bi bi-shield-check" /> Official Party Verification 2026-27
               </div>
             </div>
@@ -1759,6 +1770,17 @@ function SubmittedMsg({ result, alreadyApplied, appData }) {
                     {candName}
                   </div>
                 </div>
+
+                {/* Candidate Declaration Banner */}
+                <div style={{
+                  margin: '3px 0 2px 0', background: 'rgba(0,0,0,0.18)', borderRadius: 8, padding: '4px 8px',
+                  textAlign: 'center', color: '#FFFFFF', fontSize: 8.5, fontWeight: 600, lineHeight: 1.35, zIndex: 1
+                }}>
+                  {lang === 'ta'
+                    ? 'நான் உள்ளாட்சி தேர்தலில் போட்டியிட பாரதிய ஜனதா கட்சியில் விண்ணப்பித்து அதற்கான சான்றிதழ் பெற்றுள்ளேன்..!'
+                    : 'I have applied to the Bharatiya Janata Party to contest the local body elections and have received the necessary certificate.'
+                  }
+                </div>
               </div>
 
               {/* Candidate Details Box (Pure White Panel inside Saffron Card) */}
@@ -1794,11 +1816,11 @@ function SubmittedMsg({ result, alreadyApplied, appData }) {
                 boxShadow: '0 4px 14px rgba(0,0,0,0.15)', zIndex: 1, color: '#0F172A'
               }}>
                 <div>
-                  <div style={{ fontSize: 9.5, color: '#64748B', fontWeight: 500 }}>Submitted Timestamp</div>
-                  <div style={{ fontSize: 11, fontWeight: 700, color: '#0F172A', marginTop: 1 }}>
+                  <div style={{ fontSize: 8, color: '#64748B', fontWeight: 500 }}>Submitted Timestamp</div>
+                  <div style={{ fontSize: 9.5, fontWeight: 700, color: '#0F172A', marginTop: 1 }}>
                     {fmtDateTime(result.submitted_at)}
                   </div>
-                  <div style={{ fontSize: 9.5, color: '#FF6600', marginTop: 2, fontWeight: 800, display: 'flex', alignItems: 'center', gap: 3 }}>
+                  <div style={{ fontSize: 8, color: '#FF6600', marginTop: 1, fontWeight: 800, display: 'flex', alignItems: 'center', gap: 3 }}>
                     <i className="bi bi-shield-check" /> Official Party Verification 2026-27
                   </div>
                 </div>

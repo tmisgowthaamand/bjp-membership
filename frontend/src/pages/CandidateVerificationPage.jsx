@@ -370,6 +370,14 @@ export default function CandidateVerificationPage() {
                     {candName}
                   </div>
                 </div>
+
+                {/* Candidate Declaration Banner */}
+                <div style={{
+                  margin: '3px 0 2px 0', background: 'rgba(0,0,0,0.18)', borderRadius: 8, padding: '4px 8px',
+                  textAlign: 'center', color: '#FFFFFF', fontSize: 8.5, fontWeight: 600, lineHeight: 1.35, zIndex: 1
+                }}>
+                  I have applied to the Bharatiya Janata Party to contest the local body elections and have received the necessary certificate.
+                </div>
               </div>
 
               {/* Details Box (Pure White Panel) */}
@@ -400,12 +408,12 @@ export default function CandidateVerificationPage() {
               <div style={{
                 background: '#FFFFFF', color: '#0F172A',
                 borderRadius: 12, padding: '10px 12px', display: 'flex', alignItems: 'center',
-                justify: 'space-between', boxShadow: '0 4px 14px rgba(0,0,0,0.15)', zIndex: 1
+                justifyContent: 'space-between', boxShadow: '0 4px 14px rgba(0,0,0,0.15)', zIndex: 1
               }}>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                  <span style={{ fontSize: 9.5, color: '#64748B', fontWeight: 500 }}>Submitted Timestamp</span>
-                  <span style={{ fontSize: 11, fontWeight: 800, color: '#0F172A' }}>{formattedTime}</span>
-                  <span style={{ fontSize: 9.5, color: '#f76201', fontWeight: 800, display: 'flex', alignItems: 'center', gap: 3, marginTop: 1 }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+                  <span style={{ fontSize: 8, color: '#64748B', fontWeight: 500 }}>Submitted Timestamp</span>
+                  <span style={{ fontSize: 9.5, fontWeight: 800, color: '#0F172A' }}>{formattedTime}</span>
+                  <span style={{ fontSize: 8, color: '#f76201', fontWeight: 800, display: 'flex', alignItems: 'center', gap: 3, marginTop: 1 }}>
                     🛡️ Official Party Verification 2026-27
                   </span>
                 </div>
