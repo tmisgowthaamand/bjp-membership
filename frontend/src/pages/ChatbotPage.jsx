@@ -1573,6 +1573,75 @@ function SubmittedMsg({ result, alreadyApplied, appData }) {
         </button>
       </div>
 
+      {/* BJP Organiser Get In Touch Box */}
+      <div style={cardBox}>
+        <div style={cardTitle}>
+          <i className="bi bi-person-lines-fill text-saffron" />
+          {t('BJP Organiser Get In Touch')}
+        </div>
+        <div style={{ fontSize: 12, color: 'var(--color-ash)', lineHeight: 1.4 }}>
+          {t('You can reach out to your local BJP Organiser for updates or send a one-time message directly.')}
+        </div>
+
+        <div style={{ background: 'var(--color-abyss)', border: '1px solid var(--color-graphite)', borderRadius: 10, padding: 12, display: 'flex', flexDirection: 'column', gap: 8 }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#FF6600', display: 'flex', alignItems: 'center', gap: 8 }}>
+            <i className="bi bi-telephone-fill" /> {t('BJP Organiser Helpline Numbers')}:
+          </div>
+          <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--color-chalk)' }}>
+            +91 98765 43210 &nbsp;|&nbsp; +91 91234 56789
+          </div>
+          <div style={{ fontSize: 12, color: 'var(--color-ash)' }}>
+            <i className="bi bi-geo-alt-fill text-saffron me-1" />
+            {t('BJP Party Headquarters & Organiser Office')}
+          </div>
+        </div>
+
+        {sentMsg ? (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+            <div style={{ background: '#ECFDF5', border: '1.5px solid #10B981', borderRadius: 10, padding: 10, color: '#059669', fontSize: 13, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 8 }}>
+              <i className="bi bi-check-circle-fill" style={{ fontSize: 18 }} />
+              <div>{t('✓ Message sent to Organiser (One-time submission completed)')}</div>
+            </div>
+
+            <div style={{ background: 'rgba(255,102,0,0.06)', border: '1.5px solid #FF6600', borderRadius: 10, padding: 12, display: 'flex', flexDirection: 'column', gap: 6 }}>
+              <div style={{ fontSize: 12, fontWeight: 700, color: '#FF6600', display: 'flex', alignItems: 'center', gap: 6 }}>
+                <i className="bi bi-chat-square-quote-fill" /> {t('Organiser Reach Out Message (One-Time Candidate Query)')}
+              </div>
+              <div style={{ fontSize: 13, color: 'var(--color-chalk)', fontWeight: 600, lineHeight: 1.4, whiteSpace: 'pre-wrap' }}>
+                "{sentMsg.text}"
+              </div>
+              <div style={{ fontSize: 11, color: 'var(--color-ash)', marginTop: 2 }}>
+                <i className="bi bi-clock-history me-1" />
+                {t('Sent on')}: {fmtDateTime(sentMsg.sent_at)}
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+            <span style={fieldLabel}>
+              <i className="bi bi-chat-left-dots-fill text-saffron me-1" />
+              {t('Send a One-Time Request / Message to Organiser')}
+            </span>
+            <textarea
+              style={{ ...controlStyle, resize: 'vertical', fontFamily: 'inherit', fontSize: 13 }}
+              rows={3}
+              value={orgMsg}
+              disabled={sending}
+              placeholder={t('Type your query or one-time message to local BJP Organiser here...')}
+              onChange={(e) => { setOrgMsg(e.target.value); if (error) setError('') }}
+            />
+            {error && <div style={{ fontSize: 12, color: '#e74c3c' }}><i className="bi bi-exclamation-circle" /> {error}</div>}
+            <button
+              style={primaryBtn(Boolean(orgMsg.trim()) && !sending)}
+              disabled={!orgMsg.trim() || sending}
+              onClick={handleSendOrganiserMsg}
+            >
+              {sending ? t('Sending message...') : t('Send Request to Organiser')} <i className="bi bi-send-fill" />
+            </button>
+          </div>
+        )}
+      </div>
+
 
 
 
