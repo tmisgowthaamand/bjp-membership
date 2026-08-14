@@ -1286,21 +1286,22 @@ function SubmittedMsg({ result, alreadyApplied, appData }) {
   const [sentMsg, setSentMsg] = useState(initialSentMsg)
   const [orgMsg, setOrgMsg] = useState('')
   const [sending, setSending] = useState(false)
-  const [error, setError] = useState('')
+  const [fetchedApp, setFetchedApp] = useState(null)
   const [showPosterModal, setShowPosterModal] = useState(false)
   const [showQrScanModal, setShowQrScanModal] = useState(false)
   const [qrUrl, setQrUrl] = useState('')
   const [downloading, setDownloading] = useState(false)
   const posterRef = useRef(null)
 
+  const activeApp = fetchedApp || result || {}
 
-  const candName = result?.voter?.name || appData?.voter?.name || 'Candidate'
-  const photoUrl = result?.photo_url || result?.photoUrl || appData?.photoUrl || appData?.photo_url || appData?.photoPreview || result?.voter?.photo || appData?.voter?.photo || ''
-  const candidateImg = photoUrl && photoUrl.trim() ? photoUrl : 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300'
-  const epicNo = result?.epic_no || appData?.epic || result?.voter?.epic_no || ''
+  const candName = activeApp.voter?.name || result?.voter?.name || appData?.voter?.name || 'Candidate'
+  const photoUrl = activeApp.photo_url || activeApp.photoUrl || result?.photo_url || result?.photoUrl || appData?.photoUrl || appData?.photo_url || appData?.photoPreview || activeApp.voter?.photo || result?.voter?.photo || ''
+  const candidateImg = photoUrl && photoUrl.trim() ? photoUrl : 'https://raw.githubusercontent.com/twbs/icons/main/icons/person-circle.svg'
+  const epicNo = activeApp.epic_no || activeApp.voter?.epic_no || result?.epic_no || appData?.epic || result?.voter?.epic_no || ''
   
-  const bodyType = result?.body_type || appData?.bodyType || ''
-  const lb = result?.local_body || appData?.localBody || {}
+  const bodyType = activeApp.body_type || result?.body_type || appData?.bodyType || ''
+  const lb = activeApp.local_body || result?.local_body || appData?.localBody || {}
   
   const getLbSummary = () => {
     if (typeof lb === 'string') return lb
@@ -1317,18 +1318,27 @@ function SubmittedMsg({ result, alreadyApplied, appData }) {
   }
 
   const lbSummary = getLbSummary() || 'Tamil Nadu Local Body'
-  const posPrefs = result?.position_preferences || appData?.positionPrefs || []
+  const posPrefs = activeApp.position_preferences || result?.position_preferences || appData?.positionPrefs || []
   const firstPos = posPrefs[0] || 'Local Body Candidate'
 
+  const targetAppId = activeApp.application_id || result?.application_id || appData?.applicationId || ''
+
   useEffect(() => {
-    if (result?.application_id) {
+    if (targetAppId) {
+      chat.getApplication(targetAppId)
+        .then((res) => {
+          const app = res?.application || res?.data?.application
+          if (app) setFetchedApp(app)
+        })
+        .catch(() => {})
+
       const origin = typeof window !== 'undefined' ? window.location.origin : 'https://bjp-mebership.vercel.app'
-      const payload = `${origin}/verify?app_id=${encodeURIComponent(result.application_id)}`
+      const payload = `${origin}/verify?app_id=${encodeURIComponent(targetAppId)}`
       QRCode.toDataURL(payload, { margin: 1, width: 140, color: { dark: '#0F172A', light: '#FFFFFF' } })
         .then(setQrUrl)
         .catch(() => {})
     }
-  }, [result?.application_id])
+  }, [targetAppId])
 
   const handleDownloadPoster = async () => {
     if (!posterRef.current) return
