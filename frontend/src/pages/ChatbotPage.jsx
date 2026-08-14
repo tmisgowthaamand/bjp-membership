@@ -1295,7 +1295,7 @@ function SubmittedMsg({ result, alreadyApplied, appData }) {
 
 
   const candName = result?.voter?.name || appData?.voter?.name || 'Candidate'
-  const photoUrl = result?.photo_url || appData?.photoUrl || appData?.photoPreview || ''
+  const photoUrl = result?.photo_url || result?.photoUrl || appData?.photoUrl || appData?.photo_url || appData?.photoPreview || result?.voter?.photo || appData?.voter?.photo || ''
   const candidateImg = photoUrl && photoUrl.trim() ? photoUrl : 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300'
   const epicNo = result?.epic_no || appData?.epic || result?.voter?.epic_no || ''
   

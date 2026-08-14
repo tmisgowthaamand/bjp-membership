@@ -209,6 +209,15 @@ export async function postSubmitApplication(req, res) {
       application_id,
       submitted_at,
       mobile,
+      photo_url: photoUrl,
+      video_url: videoUrl,
+      document_url: documentUrl,
+      membership_id: membershipId,
+      epic_no: epic,
+      voter,
+      body_type: bodyType,
+      local_body: localBody,
+      position_preferences: prefs,
       message: 'Application submitted successfully.',
     })
   } catch (e) {

@@ -44,7 +44,7 @@ export default function CandidateVerificationPage() {
   // Extract variables
   const candName = appData?.voter?.name || 'Candidate'
   const epicNo = appData?.voter?.epic_no || appData?.epic_no || 'N/A'
-  const photoUrl = appData?.photo_url || appData?.photoUrl || appData?.photo_preview || ''
+  const photoUrl = appData?.photo_url || appData?.photoUrl || appData?.photo_preview || appData?.voter?.photo || ''
   const candidateImg = photoUrl && photoUrl.trim() ? photoUrl : 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300'
   const posPrefs = appData?.position_preferences || []
   const primaryPos = posPrefs[0] || 'Local Body Candidate'
